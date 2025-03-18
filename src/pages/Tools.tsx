@@ -1,11 +1,11 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Tool } from "@/types";
+import { Button } from "../components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "../components/ui/card";
+import { Input } from "../components/ui/input";
 import { Search } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { Tool } from "../types";
+import { useToast } from "../hooks/use-toast";
 
 const Tools = () => {
   const { toast } = useToast();

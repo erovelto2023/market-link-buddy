@@ -1,8 +1,8 @@
 
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardFooter } from "./card";
+import { Button } from "./button";
 import { ExternalLink, Heart } from "lucide-react";
-import { Program } from "@/types";
+import { Program } from "../../types";
 import { useState } from "react";
 
 interface ProgramCardProps {

@@ -9,7 +9,7 @@ import {
   Package,
   Settings,
   ShoppingCart,
-  Tool,
+  Wrench,
 } from "lucide-react";
 
 const Navbar = () => {
@@ -31,7 +31,7 @@ const Navbar = () => {
     { path: "/links", label: "Links", icon: LinkIcon },
     { path: "/sales", label: "Sales", icon: ShoppingCart },
     { path: "/manage", label: "Manage", icon: Settings },
-    { path: "/tools", label: "Tools", icon: Tool },
+    { path: "/tools", label: "Tools", icon: Wrench },
   ];
 
   return (

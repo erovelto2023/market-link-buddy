@@ -1,11 +1,11 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { ProgramCard } from "@/components/ui/program-card";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { ProgramCard } from "../components/ui/program-card";
 import { Search, Plus, FileUp, FileDown } from "lucide-react";
-import { Program } from "@/types";
-import { useToast } from "@/hooks/use-toast";
+import { Program } from "../types";
+import { useToast } from "../hooks/use-toast";
 
 const Programs = () => {
   const { toast } = useToast();

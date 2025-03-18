@@ -1,6 +1,6 @@
 
-import { Program } from "@/types";
-import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
+import { Program } from "../../types";
+import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "../ui/table";
 
 interface ProgramTableProps {
   programs: Program[];

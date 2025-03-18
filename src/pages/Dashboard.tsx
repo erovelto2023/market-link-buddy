@@ -1,10 +1,10 @@
 
 import { useState, useEffect } from "react";
-import { StatsCard } from "@/components/dashboard/StatsCard";
-import { ProgramTable } from "@/components/dashboard/ProgramTable";
-import { Program } from "@/types";
+import { StatsCard } from "../components/dashboard/StatsCard";
+import { ProgramTable } from "../components/dashboard/ProgramTable";
+import { Program } from "../types";
 import { Activity, DollarSign, ShoppingCart } from "lucide-react";
-import { toast } from "@/hooks/use-toast";
+import { toast } from "../hooks/use-toast";
 
 const Dashboard = () => {
   const [isLoading, setIsLoading] = useState(true);

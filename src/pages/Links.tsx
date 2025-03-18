@@ -1,10 +1,10 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { AffiliateLink } from "@/types";
+import { Button } from "../components/ui/button";
+import { Input } from "../components/ui/input";
+import { AffiliateLink } from "../types";
 import { Search, Plus, Link2, ExternalLink, Pencil, Trash2 } from "lucide-react";
-import { useToast } from "@/hooks/use-toast";
+import { useToast } from "../hooks/use-toast";
 
 const Links = () => {
   const { toast } = useToast();
