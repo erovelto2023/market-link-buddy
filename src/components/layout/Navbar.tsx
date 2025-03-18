@@ -1,112 +1,128 @@
 
-import { Link, useLocation } from 'react-router-dom';
-import { Button } from '@/components/ui/button';
-import { Search, Bell, HelpCircle, User, LogOut } from 'lucide-react';
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import {
+  BarChart3,
+  Globe,
+  Home,
+  LinkIcon,
+  Package,
+  Settings,
+  ShoppingCart,
+  Tool,
+} from "lucide-react";
 
 const Navbar = () => {
   const location = useLocation();
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isActive = (path: string) => {
     return location.pathname === path;
   };
 
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  const navItems = [
+    { path: "/", label: "Home", icon: Home },
+    { path: "/dashboard", label: "Dashboard", icon: BarChart3 },
+    { path: "/programs", label: "Programs", icon: Package },
+    { path: "/links", label: "Links", icon: LinkIcon },
+    { path: "/sales", label: "Sales", icon: ShoppingCart },
+    { path: "/manage", label: "Manage", icon: Settings },
+    { path: "/tools", label: "Tools", icon: Tool },
+  ];
+
   return (
-    <header 
-      className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300 border-b backdrop-blur-md bg-white/80",
-        scrolled ? "py-2 shadow-sm" : "py-3"
-      )}
-    >
-      <div className="container mx-auto px-4 flex items-center justify-between">
-        <div className="flex items-center space-x-8">
-          <Link to="/" className="flex items-center">
-            <div className="w-10 h-10 bg-affiliate-purple rounded-full flex items-center justify-center">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M15 15L9 9M9 15L15 9" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                <circle cx="12" cy="12" r="10" stroke="white" strokeWidth="2"/>
-              </svg>
-            </div>
-            <span className="ml-2 text-xl font-semibold tracking-tight">Affiliate Manager</span>
-          </Link>
-          
-          <nav className="hidden md:flex items-center space-x-1">
-            <Link 
-              to="/dashboard" 
-              className={cn("nav-link", isActive("/dashboard") && "nav-link-active")}
-            >
-              Dashboard
+    <nav className="fixed w-full bg-white shadow-sm z-50">
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
+          {/* Logo */}
+          <div className="flex items-center">
+            <Link to="/" className="flex items-center">
+              <div className="w-8 h-8 bg-affiliate-purple rounded-full flex items-center justify-center mr-2">
+                <Globe className="h-5 w-5 text-white" />
+              </div>
+              <span className="text-xl font-semibold hidden md:block">Affiliate Business Manager</span>
+              <span className="text-xl font-semibold md:hidden">ABM</span>
             </Link>
-            <Link 
-              to="/programs" 
-              className={cn("nav-link", isActive("/programs") && "nav-link-active")}
-            >
-              Programs
-            </Link>
-            <Link 
-              to="/links" 
-              className={cn("nav-link", isActive("/links") && "nav-link-active")}
-            >
-              Links
-            </Link>
-            <Link 
-              to="/sales" 
-              className={cn("nav-link", isActive("/sales") && "nav-link-active")}
-            >
-              Sales
-            </Link>
-            <Link 
-              to="/manage" 
-              className={cn("nav-link", isActive("/manage") && "nav-link-active")}
-            >
-              Manage
-            </Link>
-            <Link 
-              to="/tools" 
-              className={cn("nav-link", isActive("/tools") && "nav-link-active")}
-            >
-              Tools
-            </Link>
-          </nav>
-        </div>
-        
-        <div className="flex items-center space-x-3">
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <Search className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <Bell className="h-5 w-5" />
-          </Button>
-          <Button variant="ghost" size="icon" className="rounded-full">
-            <HelpCircle className="h-5 w-5" />
-          </Button>
-          
-          <div className="h-8 w-8 rounded-full bg-gray-200 flex items-center justify-center overflow-hidden">
-            <User className="h-5 w-5 text-gray-600" />
           </div>
-          
-          <Button variant="outline" size="sm" className="hidden md:flex items-center gap-2 ml-2">
-            <LogOut className="h-4 w-4" />
-            <span>Logout</span>
-          </Button>
+
+          {/* Desktop menu */}
+          <div className="hidden md:flex space-x-4">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`px-3 py-2 rounded-md text-sm font-medium flex items-center ${
+                  isActive(item.path)
+                    ? "text-affiliate-purple"
+                    : "text-gray-600 hover:text-affiliate-purple"
+                }`}
+              >
+                <item.icon className="h-4 w-4 mr-1" />
+                {item.label}
+              </Link>
+            ))}
+          </div>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden">
+            <button
+              onClick={toggleMobileMenu}
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-600 hover:text-affiliate-purple"
+            >
+              <svg
+                className="h-6 w-6"
+                stroke="currentColor"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                {isMobileMenuOpen ? (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                ) : (
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                )}
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
-    </header>
+
+      {/* Mobile menu */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden">
+          <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3 bg-white shadow-lg">
+            {navItems.map((item) => (
+              <Link
+                key={item.path}
+                to={item.path}
+                className={`block px-3 py-2 rounded-md text-base font-medium flex items-center ${
+                  isActive(item.path)
+                    ? "text-affiliate-purple"
+                    : "text-gray-600 hover:text-affiliate-purple"
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                <item.icon className="h-5 w-5 mr-2" />
+                {item.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
+    </nav>
   );
 };
 

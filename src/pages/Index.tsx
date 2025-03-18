@@ -1,11 +1,11 @@
 
-import { useEffect, useState, useRef } from "react";
 import Hero from "@/components/layout/Hero";
-import { ProgramCard } from "@/components/ui/program-card";
-import { Program, Testimonial, Feature, Benefit } from "@/types";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, BarChart2, LayoutGrid, PieChart, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BarChart2, CheckCircle2, LayoutGrid, PieChart } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useState, useRef, useEffect } from "react";
+import { Program, Testimonial, Feature, Benefit } from "@/types";
+import { ProgramCard } from "@/components/ui/program-card";
 
 const Index = () => {
   const navigate = useNavigate();
